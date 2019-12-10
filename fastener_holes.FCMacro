@@ -4,16 +4,16 @@
 # ====================================================================================
 # ====================================================================================
 # ==                                                                                ==
-# ==                                           Fastener holes                       ==
+# ==                              Fastener holes                                    ==
 # ==                                                                                ==
 # ====================================================================================
 # ====================================================================================
 # ABOUT
 # ====================================================================================
-# version v9.0
-# Macro developed for FreeCAD (http://www.freecadweb.org/).
-# This macro creates shapes to act as holes when cut to other shapes. It makes easy and fast the creation and
-# tweaking of all needed parts. It may be very useful when designing parts for 3D printing and others.
+# Macro developed for FreeCAD (https://www.freecadweb.org/).
+# This macro creates shapes to act as holes when cut to other shapes. 
+# It makes easy and fast the creation and tweaking of all needed parts.
+# It may be very useful when designing parts for 3D printing and others.
 #
 # LICENSE
 # ====================================================================================
@@ -146,7 +146,7 @@ def make_string(input):
         else:
             input =  input.encode('utf-8')
             return input
-    else:  #py2
+    else:                            #py2
         if type(input) == unicode:
             input =  input.encode('utf-8')
             return input
@@ -353,7 +353,7 @@ class Ui_DockWidget(object):
         self.d3.setValue(20.0)
         self.d3.setSingleStep(1.0)
 
-        iN4 = QtGui.QLabel("Groove lenght")
+        iN4 = QtGui.QLabel("Groove length")
         iN4.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         iN4.hide() # set initial state hidden because "Bolt" mode is set
         self.d4 = QtGui.QDoubleSpinBox()
@@ -458,7 +458,7 @@ class Ui_DockWidget(object):
         self.retranslateUi(DockWidget)
         QtCore.QMetaObject.connectSlotsByName(DockWidget)
 
-## retraslateUi Qt5 compatibility #############################################################################################################
+## retraslateUi Qt5 compatibility ##########################################################
     def retranslateUi(self, DockWidget):
         DockWidget.setWindowTitle("Fastener holes")
         # self.close.setToolTip("Close window")
@@ -1423,16 +1423,16 @@ doc=FreeCAD.ActiveDocument
 
 Alg_singleInstance()
 
-ALGDockWidget = QtGui.QDockWidget()          # create a new dckwidget
-ALGDockWidget.ui = Ui_DockWidget()   #Ui_AlignDockWidget()           # myWidget_Ui()             # load the Ui script
-ALGDockWidget.ui.setupUi(ALGDockWidget) # setup the ui
+ALGDockWidget = QtGui.QDockWidget()     # create a new dockwidget
+ALGDockWidget.ui = Ui_DockWidget()      # load the Ui script
+ALGDockWidget.ui.setupUi(ALGDockWidget) # setup the Ui
 #ui = Ui_AlignDockWidget()
 #ui.setupUi(AlignDockWidget)
 #AlignDockWidget.show()
 
 ALGDockWidget.setObjectName("fastenerHoles")
 
-ALGDockWidget.setFloating(True)  #undock
+ALGDockWidget.setFloating(True)         #undock
 ALGDockWidget.resize(sizeX,sizeY)
 ALGDockWidget.activateWindow()
 ALGDockWidget.raise_()
@@ -1444,7 +1444,7 @@ ALGDockWidget.setFeatures( QtGui.QDockWidget.DockWidgetMovable | QtGui.QDockWidg
 # if ALGDockWidget.style().metaObject().className()== "QStyleSheetStyle":
 #     ALGDockWidget.setStyleSheet('QPushButton {border-radius: 0px; padding: 1px 2px;}')
 
-ALGmw = FreeCADGui.getMainWindow()                 # PySide # the active qt window, = the freecad window since we are inside it
+ALGmw = FreeCADGui.getMainWindow()      # PySide # the active qt window = the freecad window since we are inside it
 ALGmw.addDockWidget(QtCore.Qt.RightDockWidgetArea,ALGDockWidget)
 #ALGDockWidget.show()
 Alg_undock()
