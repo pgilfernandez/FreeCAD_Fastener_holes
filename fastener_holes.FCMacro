@@ -11,13 +11,13 @@
 # ABOUT
 # ====================================================================================
 # Macro developed for FreeCAD (https://www.freecadweb.org/).
-# This macro creates shapes to act as holes when cut to other shapes. 
+# This macro creates shapes to act as holes when cut to other shapes.
 # It makes easy and fast the creation and tweaking of all needed parts.
 # It may be very useful when designing parts for 3D printing and others.
 #
 # LICENSE
 # ====================================================================================
-# Copyright (c) 2019 Pablo Gil Fernandez
+# Copyright (c) 2020 Pablo Gil Fernandez
 #
 # This work is licensed under GNU Lesser General Public License (LGPL).
 # To view a copy of this license, visit https://www.gnu.org/licenses/lgpl-3.0.html
@@ -25,8 +25,8 @@
 # ====================================================================================
 __title__   = "Fastener holes"
 __author__  = "Pablo Gil Fernández"
-__version__ = "10.00"
-__date__    = "08/08/2019"
+__version__ = "11.00"
+__date__    = "20/02/2020"
 
 __Comment__ = "This macro creates shapes to act as holes when cut to other shapes. It makes easy and fast the creation and tweaking of all needed parts. It may be very useful when designing parts for 3D printing and others."
 
@@ -56,7 +56,7 @@ def a_clear_console():
 a_clear_console()
 
 sizeX = 360
-sizeY = 340
+sizeY = 370
 
 def close_dock():
     #def closeEvent(self, e):
@@ -181,11 +181,22 @@ class Ui_DockWidget(object):
 
         # Hide/show "to column" label and spinbox based on mode type
         def disableWidget(currentIndex):
+
+
+
             if self.d2.currentText() == "Hole":
                 iN4.hide()
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -193,6 +204,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt and nut":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -200,6 +219,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt and grooved nut":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -207,6 +234,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt and washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -214,6 +246,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt and large washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -221,6 +261,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt, nut and washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -228,6 +276,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt, nut and large washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -235,6 +291,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt, grooved nut and washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -242,6 +306,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             elif self.d2.currentText() == "Bolt, grooved nut and large washer":
                 iN3.show()
                 self.d3.setEnabled(True)
@@ -249,6 +318,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.show()
                 self.d5.setEnabled(True)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             elif self.d2.currentText() == "Nut":
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -256,6 +330,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Grooved nut":
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -263,6 +345,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             elif self.d2.currentText() == "Nut and washer":
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -270,6 +357,14 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.show()
+                self.d10.setEnabled(True)
+                if self.d10.isChecked():
+                    # iN11.show()
+                    self.d11.setEnabled(True)
+                else:
+                    # iN11.hide()
+                    self.d11.setEnabled(False)
             elif self.d2.currentText() == "Nut and large washer":
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -284,6 +379,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             elif self.d2.currentText() == "Grooved nut and large washer":
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -291,6 +391,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(True)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
             else:
                 iN3.hide()
                 self.d3.setEnabled(False)
@@ -298,6 +403,11 @@ class Ui_DockWidget(object):
                 self.d4.setEnabled(False)
                 iN5.hide()
                 self.d5.setEnabled(False)
+                iN10.hide()
+                self.d10.setChecked(False)
+                self.d10.setEnabled(False)
+                # iN11.hide()
+                self.d11.setEnabled(False)
 
         DockWidget.setObjectName("DockWidget")
         DockWidget.resize(sizeX, sizeY)
@@ -346,6 +456,20 @@ class Ui_DockWidget(object):
         self.d2.addItem("Grooved nut and large washer")
         self.d2.setCurrentIndex(1) # set "Bolt" as default
         self.d2.currentIndexChanged['QString'].connect(disableWidget)
+
+        iN10 = QtGui.QLabel("Slot (range)")
+        iN10.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        self.d10 = QtGui.QCheckBox()
+        self.d10.setToolTip("Turn the hole into a slot")
+        self.d10.stateChanged.connect(disableWidget)
+
+        # iN11 = QtGui.QLabel("Sliding range")
+        # iN11.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        self.d11 = QtGui.QDoubleSpinBox()
+        self.d11.setValue(10.0)
+        self.d11.setSingleStep(1.0)
+        self.d11.setToolTip("Sliding range in with the fastener is able to move")
+        self.d11.setEnabled(False)
 
         iN3 = QtGui.QLabel("Length")
         iN3.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
@@ -397,6 +521,10 @@ class Ui_DockWidget(object):
         self.d9 = QtGui.QLineEdit()
         self.d9.setText("Holes") #Default value
 
+        separator = QtGui.QFrame()
+        separator.setFrameShape(QtGui.QFrame.HLine)
+        separator.setLineWidth(5)
+
         # self.close = QtGui.QPushButton()
         # self.close.setText("Close")
         # self.close.setObjectName("close")
@@ -410,26 +538,31 @@ class Ui_DockWidget(object):
         self.help.setFixedWidth(40)
         self.help.setObjectName("help")
 
-        self.grid.addWidget(iN1, 1, 0)
-        self.grid.addWidget(self.d1, 1, 1)
-        self.grid.addWidget(iN2, 2, 0)
-        self.grid.addWidget(self.d2, 2, 1)
+        self.grid.addWidget(iN1, 0, 0)
+        self.grid.addWidget(self.d1, 0, 1, 1, 2)
+        self.grid.addWidget(iN2, 1, 0)
+        self.grid.addWidget(self.d2, 1, 1, 1, 2)
+        self.grid.addWidget(iN10, 2, 0)
+        self.grid.addWidget(self.d10, 2, 1)
+        # self.grid.addWidget(iN11, 3, 0)
+        self.grid.addWidget(self.d11, 2, 2)
         self.grid.addWidget(iN3, 3, 0)
-        self.grid.addWidget(self.d3, 3, 1)
+        self.grid.addWidget(self.d3, 3, 1, 1, 2)
         self.grid.addWidget(iN4, 4, 0)
-        self.grid.addWidget(self.d4, 4, 1)
+        self.grid.addWidget(self.d4, 4, 1, 1, 2)
         self.grid.addWidget(iN5, 5, 0)
-        self.grid.addWidget(self.d5, 5, 1)
+        self.grid.addWidget(self.d5, 5, 1, 1, 2)
         self.grid.addWidget(iN6, 6, 0)
-        self.grid.addWidget(self.d6, 6, 1)
+        self.grid.addWidget(self.d6, 6, 1, 1, 2)
         self.grid.addWidget(iN7, 7, 0)
-        self.grid.addWidget(self.d7, 7, 1)
+        self.grid.addWidget(self.d7, 7, 1, 1, 2)
         self.grid.addWidget(iN8, 8, 0)
-        self.grid.addWidget(self.d8, 8, 1)
+        self.grid.addWidget(self.d8, 8, 1, 1, 2)
         self.grid.addWidget(iN9, 9, 0)
-        self.grid.addWidget(self.d9, 9, 1)
-        self.grid.addWidget(self.help, 10, 0)
-        self.grid.addWidget(self.createHole, 10, 1)
+        self.grid.addWidget(self.d9, 9, 1, 1, 2)
+        self.grid.addWidget(separator, 10, 0)
+        self.grid.addWidget(self.help, 11, 0)
+        self.grid.addWidget(self.createHole, 11, 1, 1, 2)
 
 
         # Fixed label widths
@@ -559,6 +692,13 @@ class Ui_DockWidget(object):
         bodyTransparency = self.d8.value()
         groupName = self.d9.text()
 
+        if self.d10.isChecked():
+            slot = True
+        else:
+            slot = False
+
+        slotWidth = self.d11.value()
+
         #print (groupName)
 
         #print (str(self.d7.currentText()))
@@ -646,7 +786,7 @@ class Ui_DockWidget(object):
             App.ActiveDocument.addObject("App::DocumentObjectGroup",groupName)
 
     # ===== Hole ==============================================
-        if self.d2.currentText() == "Hole":
+        if self.d2.currentText() == "Hole" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Hole')
             Gui.activeView().setActiveObject('pdbody', body)
             App.ActiveDocument.recompute()
@@ -672,8 +812,59 @@ class Ui_DockWidget(object):
 
             #print ("\n" + self.d1.currentText() + " Hole created")
 
+    # ===== Hole (slot)==============================================
+        if self.d2.currentText() == "Hole" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Hole with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = bodyR
+            cylinder1.Height = rodH
+            cylinder1.Label = "Hole"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube)
+            cube.Length = slotWidth
+            cube.Width = bodyR*2
+            cube.Height = rodH
+            cube.Label = "slot"
+            cube.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -rodH),  App.Rotation(0.0, 0.0, 0.0))
+            cube.MapReversed = False
+            cube.Support = [(App.activeDocument().XY_Plane,'')]
+            cube.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = bodyR
+            cylinder2.Height = rodH
+            cylinder2.Label = "Hole"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Hole created")
+
     # ===== Bolt ==============================================
-        if self.d2.currentText() == "Bolt":
+        if self.d2.currentText() == "Bolt" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -711,8 +902,90 @@ class Ui_DockWidget(object):
 
             #print ("\n" + self.d1.currentText() + " Bolt created")
 
+    # ===== Bolt (slot) ==============================================
+        if self.d2.currentText() == "Bolt" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = headR
+            cylinder1.Height = headH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = headR*2
+            cube1.Height = headH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -headR, -headH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = headR
+            cylinder2.Height = headH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt created")
+
     # ===== Bolt and nut ==============================================
-        elif self.d2.currentText() == "Bolt and nut":
+        elif self.d2.currentText() == "Bolt and nut" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and nut')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -761,8 +1034,123 @@ class Ui_DockWidget(object):
 
             print ("\n" + self.d1.currentText() + " Bolt and nut created")
 
+    # ===== Bolt and nut (slot)==============================================
+        if self.d2.currentText() == "Bolt and nut" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and nut with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = headR
+            cylinder1.Height = headH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = headR*2
+            cube1.Height = headH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -headR, -headH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = headR
+            cylinder2.Height = headH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            prism1 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism1)
+            prism1.Polygon = 6
+            prism1.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism1.Height = nutH
+            prism1.Label = "Nut-left"
+            prism1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism1.MapReversed = False
+            prism1.Support = [(App.activeDocument().XY_Plane,'')]
+            prism1.MapMode = 'FlatFace'
+
+            cube3 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube3)
+            cube3.Length = slotWidth
+            cube3.Width = nutWidth
+            cube3.Height = nutH
+            cube3.Label = "Nut-center"
+            cube3.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -nutWidth/2, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            cube3.MapReversed = False
+            cube3.Support = [(App.activeDocument().XY_Plane,'')]
+            cube3.MapMode = 'FlatFace'
+
+            prism2 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism2)
+            prism2.Polygon = 6
+            prism2.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism2.Height = nutH
+            prism2.Label = "Nut-right"
+            prism2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism2.MapReversed = False
+            prism2.Support = [(App.activeDocument().XY_Plane,'')]
+            prism2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt and nut with slot created")
+
     # ===== Bolt and grooved nut ==============================================
-        elif self.d2.currentText() == "Bolt and grooved nut":
+        elif self.d2.currentText() == "Bolt and grooved nut" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and nut')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -823,7 +1211,7 @@ class Ui_DockWidget(object):
             print ("\n" + self.d1.currentText() + " Bolt and grooved nut created")
 
     # ===== Bolt and washer ==============================================
-        elif self.d2.currentText() == "Bolt and washer":
+        elif self.d2.currentText() == "Bolt and washer" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and washer')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -861,8 +1249,90 @@ class Ui_DockWidget(object):
 
             print ("\n" + self.d1.currentText() + " Bolt and washer created")
 
+    # ===== Bolt and washer (slot) ==============================================
+        if self.d2.currentText() == "Bolt and washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerR
+            cylinder1.Height = headH + washerH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerR*2
+            cube1.Height = headH + washerH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerR, -headH -washerH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerR
+            cylinder2.Height = headH + washerH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH + washerH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH + washerH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH - washerH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH + washerH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt and washer with slot created")
+
     # ===== Bolt and large washer ==============================================
-        elif self.d2.currentText() == "Bolt and large washer":
+        elif self.d2.currentText() == "Bolt and large washer" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and large washer')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -900,8 +1370,90 @@ class Ui_DockWidget(object):
 
             print ("\n" + self.d1.currentText() + " Bolt and large washer created")
 
+    # ===== Bolt and large washer (slot) ==============================================
+        if self.d2.currentText() == "Bolt and large washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt and large washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerLargeR
+            cylinder1.Height = headH + washerLargeH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerLargeR*2
+            cube1.Height = headH + washerLargeH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerLargeR, -headH -washerLargeH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerLargeR
+            cylinder2.Height = headH + washerLargeH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH + washerLargeH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH + washerLargeH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH - washerLargeH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH + washerLargeH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt and large washer with slot created")
+
     # ===== Bolt, nut and washer ==============================================
-        elif self.d2.currentText() == "Bolt, nut and washer":
+        elif self.d2.currentText() == "Bolt, nut and washer" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt nut and washer')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -949,6 +1501,121 @@ class Ui_DockWidget(object):
             App.ActiveDocument.recompute()
 
             print ("\n" + self.d1.currentText() + " Bolt, nut and washer created")
+
+    # ===== Bolt, nut and washer (slot) ==============================================
+        if self.d2.currentText() == "Bolt, nut and washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt nut and washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerR
+            cylinder1.Height = headH + washerH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerR*2
+            cube1.Height = headH + washerH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerR, -headH -washerH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerR
+            cylinder2.Height = headH + washerH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH + washerH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH + washerH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH - washerH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH + washerH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            prism1 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism1)
+            prism1.Polygon = 6
+            prism1.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism1.Height = nutH
+            prism1.Label = "Nut-left"
+            prism1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism1.MapReversed = False
+            prism1.Support = [(App.activeDocument().XY_Plane,'')]
+            prism1.MapMode = 'FlatFace'
+
+            cube3 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube3)
+            cube3.Length = slotWidth
+            cube3.Width = nutWidth
+            cube3.Height = nutH
+            cube3.Label = "Nut-center"
+            cube3.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -nutWidth/2, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            cube3.MapReversed = False
+            cube3.Support = [(App.activeDocument().XY_Plane,'')]
+            cube3.MapMode = 'FlatFace'
+
+            prism2 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism2)
+            prism2.Polygon = 6
+            prism2.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism2.Height = nutH
+            prism2.Label = "Nut-right"
+            prism2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism2.MapReversed = False
+            prism2.Support = [(App.activeDocument().XY_Plane,'')]
+            prism2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt, nut and washer with slot created")
 
     # ===== Bolt, nut and large washer ==============================================
         elif self.d2.currentText() == "Bolt, nut and large washer":
@@ -999,6 +1666,121 @@ class Ui_DockWidget(object):
             App.ActiveDocument.recompute()
 
             print ("\n" + self.d1.currentText() + " Bolt, nut and large washer created")
+
+    # ===== Bolt, nut and large washer (slot) ==============================================
+        if self.d2.currentText() == "Bolt, nut and large washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Bolt nut and large washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+            App.ActiveDocument.recompute()
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerLargeR
+            cylinder1.Height = headH + washerLargeH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerLargeR*2
+            cube1.Height = headH + washerLargeH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerLargeR, -headH -washerLargeH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerLargeR
+            cylinder2.Height = headH + washerLargeH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            cylinder3 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder3)
+            cylinder3.Radius = bodyR
+            cylinder3.Height = bodyH + headH + washerLargeH
+            cylinder3.Label = "Body-left"
+            cylinder3.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder3.MapReversed = True
+            cylinder3.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder3.MapMode = 'FlatFace'
+
+            cube2 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube2)
+            cube2.Length = slotWidth
+            cube2.Width = bodyR*2
+            cube2.Height = bodyH + headH + washerLargeH
+            cube2.Label = "Body-center"
+            cube2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -bodyR, -bodyH - headH - washerLargeH),  App.Rotation(0.0, 0.0, 0.0))
+            cube2.MapReversed = False
+            cube2.Support = [(App.activeDocument().XY_Plane,'')]
+            cube2.MapMode = 'FlatFace'
+
+            cylinder4 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder4)
+            cylinder4.Radius = bodyR
+            cylinder4.Height = bodyH + headH + washerLargeH
+            cylinder4.Label = "Body-right"
+            cylinder4.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder4.MapReversed = True
+            cylinder4.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder4.MapMode = 'FlatFace'
+
+            prism1 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism1)
+            prism1.Polygon = 6
+            prism1.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism1.Height = nutH
+            prism1.Label = "Nut-left"
+            prism1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism1.MapReversed = False
+            prism1.Support = [(App.activeDocument().XY_Plane,'')]
+            prism1.MapMode = 'FlatFace'
+
+            cube3 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube3)
+            cube3.Length = slotWidth
+            cube3.Width = nutWidth
+            cube3.Height = nutH
+            cube3.Label = "Nut-center"
+            cube3.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -nutWidth/2, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            cube3.MapReversed = False
+            cube3.Support = [(App.activeDocument().XY_Plane,'')]
+            cube3.MapMode = 'FlatFace'
+
+            prism2 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism2)
+            prism2.Polygon = 6
+            prism2.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism2.Height = nutH
+            prism2.Label = "Nut-right"
+            prism2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, -nutDisplacement),  App.Rotation(0.0, 0.0, 0.0))
+            prism2.MapReversed = False
+            prism2.Support = [(App.activeDocument().XY_Plane,'')]
+            prism2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+
+            Gui.activeDocument().activeObject().Visibility = False
+            Gui.activeDocument().activeObject().Visibility = True
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            #print ("\n" + self.d1.currentText() + " Bolt, nut and large washer with slot created")
 
     # ===== Bolt, grooved nut and washer ==============================================
         elif self.d2.currentText() == "Bolt, grooved nut and washer":
@@ -1123,7 +1905,7 @@ class Ui_DockWidget(object):
             print ("\n" + self.d1.currentText() + " Bolt, grooved nut and washer created")
 
     # ===== Nut ==============================================
-        elif self.d2.currentText() == "Nut":
+        elif self.d2.currentText() == "Nut" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -1148,6 +1930,68 @@ class Ui_DockWidget(object):
             App.ActiveDocument.recompute()
 
             print ("\n" + self.d1.currentText() + " Nut created")
+
+    # ===== Nut (slot) ==============================================
+        elif self.d2.currentText() == "Nut" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+
+            prism = App.ActiveDocument.addObject("PartDesign::AdditivePrism","Prism")
+            body.addObject(prism)
+            prism.Polygon = 6
+            prism.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism.Height = nutH
+            prism.Label = "Nut with slot"
+            prism.AttachmentOffset = App.Placement(App.Vector(0.0, 0.0, 0.0),  App.Rotation(0.0, 0.0, 180.0))
+            prism.MapReversed = False
+            prism.Support = [(App.activeDocument().XY_Plane,'')]
+            prism.MapMode = 'FlatFace'
+
+
+
+            prism1 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism1)
+            prism1.Polygon = 6
+            prism1.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism1.Height = nutH
+            prism1.Label = "Nut-left"
+            prism1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 180.0))
+            prism1.MapReversed = False
+            prism1.Support = [(App.activeDocument().XY_Plane,'')]
+            prism1.MapMode = 'FlatFace'
+
+            cube = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube)
+            cube.Length = slotWidth
+            cube.Width = nutWidth
+            cube.Height = nutH
+            cube.Label = "Nut-center"
+            cube.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -nutWidth/2, -nutH),  App.Rotation(0.0, 0.0, 0.0))
+            cube.MapReversed = False
+            cube.Support = [(App.activeDocument().XY_Plane,'')]
+            cube.MapMode = 'FlatFace'
+
+            prism2 = App.ActiveDocument.addObject('PartDesign::AdditivePrism','Prism')
+            body.addObject(prism2)
+            prism2.Polygon = 6
+            prism2.Circumradius = nutWidth / 2 / cos(math.radians(180/float(6)))
+            prism2.Height = nutH
+            prism2.Label = "Nut-right"
+            prism2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 180.0))
+            prism2.MapReversed = False
+            prism2.Support = [(App.activeDocument().XY_Plane,'')]
+            prism2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            print ("\n" + self.d1.currentText() + " Nut with slot created")
 
     # ===== Grooved nut ==============================================
         elif self.d2.currentText() == "Grooved nut":
@@ -1191,7 +2035,7 @@ class Ui_DockWidget(object):
             print ("\n" + self.d1.currentText() + " Grooved nut created")
 
     # ===== Nut and washer ==============================================
-        elif self.d2.currentText() == "Nut and washer":
+        elif self.d2.currentText() == "Nut and washer" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut and washer')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -1216,8 +2060,55 @@ class Ui_DockWidget(object):
 
             print ("\n" + self.d1.currentText() + " Nut and washer created")
 
+    # ===== Nut and washer (slot) ==============================================
+        elif self.d2.currentText() == "Nut and washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut and washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerR
+            cylinder1.Height = nutH + washerH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerR*2
+            cube1.Height = nutH + washerH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerR, -nutH - washerH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerR
+            cylinder2.Height = nutH + washerH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            print ("\n" + self.d1.currentText() + " Nut and washer with slot created")
+
     # ===== Nut and large washer ==============================================
-        elif self.d2.currentText() == "Nut and large washer":
+        elif self.d2.currentText() == "Nut and large washer" and slot == False:
             body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut and large washer')
             Gui.activeView().setActiveObject('pdbody', body)
 
@@ -1241,6 +2132,53 @@ class Ui_DockWidget(object):
             App.ActiveDocument.recompute()
 
             print ("\n" + self.d1.currentText() + " Nut and large washer created")
+
+    # ===== Nut and large washer (slot) ==============================================
+        elif self.d2.currentText() == "Nut and large washer" and slot == True:
+            body = App.ActiveDocument.addObject("PartDesign::Body",self.d1.currentText() + ' Nut and large washer with slot')
+            Gui.activeView().setActiveObject('pdbody', body)
+
+            cylinder1 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder1)
+            cylinder1.Radius = washerLargeR
+            cylinder1.Height = nutH + washerLargeH
+            cylinder1.Label = "Head-left"
+            cylinder1.AttachmentOffset = App.Placement(App.Vector(slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder1.MapReversed = True
+            cylinder1.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder1.MapMode = 'FlatFace'
+
+            cube1 = App.ActiveDocument.addObject("PartDesign::AdditiveBox","Cube")
+            body.addObject(cube1)
+            cube1.Length = slotWidth
+            cube1.Width = washerLargeR*2
+            cube1.Height = nutH + washerLargeH
+            cube1.Label = "Head-center"
+            cube1.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, -washerLargeR, -nutH - washerLargeH),  App.Rotation(0.0, 0.0, 0.0))
+            cube1.MapReversed = False
+            cube1.Support = [(App.activeDocument().XY_Plane,'')]
+            cube1.MapMode = 'FlatFace'
+
+            cylinder2 = App.ActiveDocument.addObject("PartDesign::AdditiveCylinder","Cylinder1")
+            body.addObject(cylinder2)
+            cylinder2.Radius = washerLargeR
+            cylinder2.Height = nutH + washerLargeH
+            cylinder2.Label = "Head-right"
+            cylinder2.AttachmentOffset = App.Placement(App.Vector(-slotWidth/2, 0.0, 0.0),  App.Rotation(0.0, 0.0, 0.0))
+            cylinder2.MapReversed = True
+            cylinder2.Support = [(App.activeDocument().XY_Plane,'')]
+            cylinder2.MapMode = 'FlatFace'
+
+            body.Placement.Base = App.Vector(originX, originY, originZ)
+            body.Placement.Rotation = rot.Q
+
+            Gui.activeDocument().activeObject().ShapeColor = bodyColor
+            Gui.activeDocument().activeObject().Transparency = bodyTransparency
+            Gui.activeView().setActiveObject('pdbody', None)
+            App.ActiveDocument.getObject(groupName).addObject(body)
+            App.ActiveDocument.recompute()
+
+            print ("\n" + self.d1.currentText() + " Nut and large washer with slot created")
 
     # ===== Grooved nut and washer ==============================================
         elif self.d2.currentText() == "Grooved nut and washer":
